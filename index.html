@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Cuotas</title>
+</head>
+<body>
+  <h1>Calculadora de Cuotas</h1>
+
+  <label for="numero">Ingresa un monto:</label>
+  <input type="number" id="numero">
+  <button onclick="calcularCuotas()">Calcular Cuotas</button>
+
+  <table border="1" style="margin-top: 20px;">
+    <thead>
+      <tr>
+        <th>Tipo de Pago</th>
+        <th>Valor Total</th>
+        <th>Valor por Cuota</th>
+      </tr>
+    </thead>
+    <tbody id="tablaResultado">
+      <!-- Aquí se insertarán los resultados -->
+    </tbody>
+  </table>
+
+  <script>
+    function calcularCuotas() {
+      const valor = parseFloat(document.getElementById("numero").value);
+
+      if (isNaN(valor) || valor <= 0) {
+        alert("Por favor, ingresa un número válido mayor a cero.");
+        return;
+      }
+
+      const unaCuotaTotal = valor * 1.4;
+      const dosCuotasTotal = valor * 1.6;
+      const tresCuotasTotal = valor * 1.9;
+
+      const tabla = `
+        <tr>
+          <td>1 cuota</td>
+          <td>$${unaCuotaTotal.toFixed(2)}</td>
+          <td>$${unaCuotaTotal.toFixed(2)}</td>
+        </tr>
+        <tr>
+          <td>2 cuotas</td>
+          <td>$${dosCuotasTotal.toFixed(2)}</td>
+          <td>$${(dosCuotasTotal / 2).toFixed(2)}</td>
+        </tr>
+        <tr>
+          <td>3 cuotas</td>
+          <td>$${tresCuotasTotal.toFixed(2)}</td>
+          <td>$${(tresCuotasTotal / 3).toFixed(2)}</td>
+        </tr>
+      `;
+
+      document.getElementById("tablaResultado").innerHTML = tabla;
+    }
+  </script>
+</body>
+</html>
